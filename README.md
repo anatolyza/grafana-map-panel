@@ -2,7 +2,7 @@
 
 The Grafana Map Panel is a tile map of the world that can be overlaid with circles representing data points from a query. It can be used with time series metrics, with geohash data from Elasticsearch or data in the Table format.
 
-![Grafana Map](https://raw.githubusercontent.com/grafana/worldmap-panel/54f83cfdc7339fee02df00933422c35630677330/src/images/worldmap-world.png)
+<img src="src/images/worldmap-world.png" alt="Design" style="width: 500px;"/>
 
 ## How this works (theory and examples)
 
@@ -119,7 +119,7 @@ Here are some examples of Time Series Queries
 
 Use the aliasByNode function to point to the field containing the country code. See the image below for an example of a graphite query.
 
-![Graphite Query for Countries](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/worldmap-timeseries-query.png)
+<img src="src/images/worldmap-timeseries-query.png" alt="Design" style="width: 500px;"/>
 
 Example dashboard with Graphite queries on [the Grafana play site](http://localhost:3000/d/000000003/worldmap-panels?panelId=8&fullscreen&edit&orgId=1).
 
@@ -127,29 +127,29 @@ Example dashboard with Graphite queries on [the Grafana play site](http://localh
 
 The Group By clause should be the country code and an alias is needed too. The alias should be in the form `$tag_<field name>`.
 
-![Influx Query for Countries](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/influx-query.png)
+<img src="src/images/influx-query.png" alt="Design" style="width: 500px;"/>
 
 #### Elasticsearch Query for Countries
 
 Use a Group By clause on the field containing the country code and a Then by clause with Date Histogram by `@timestamp` (or corresponding date field).
 
-![Elasticsearch Query for Countries](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/elasticsearch-query.png)
+<img src="src/images/elasticsearch-query.png" alt="Design" style="width: 500px;"/>
 
 #### Map Data Options for Time Series Data
 
 On the editor tab, choose either the `countries` or `states` option.
 
-![Options for Countries](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/countries-option.png)
+<img src="src/images/countries-option.png" alt="Design" style="width: 500px;"/>
 
 Using a JSON endpoint to return a custom list of locations:
 
-![Options for JSON](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/json-endpoint.png)
+<img src="src/images/worldmap-timeseries-query.png" alt="Design" style="width: 500px;"/>
 
 The endpoint used here is for the demo version of worldPing - [https://worldpingdemo.grafana.net/api/plugin-proxy/raintank-worldping-app/api/v2/probes/locations](https://worldpingdemo.grafana.net/api/plugin-proxy/raintank-worldping-app/api/v2/probes/locations). If you have your own endpoint defined it must be reachable from the client side, as it is approached by client's browser.
 
 Using a JSONP endpoint (if you need to wrap the JSON to get around CORS problems):
 
-![Options for JSONP](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/jsonp-endpoint.png)
+<img src="src/images/jsonp-endpoint.png" alt="Design" style="width: 500px;"/>
 
 For some details on troubleshooting JSON/JSONP check [#47](https://github.com/grafana/worldmap-panel/issues/47).
 
@@ -161,7 +161,7 @@ Supported Databases:
 
 The [Geo-point](https://www.elastic.co/guide/en/elasticsearch/reference/2.3/geo-point.html) data type with geohash indexing in Elasticsearch can also be used as a datasource. Grafana has a new bucket aggregate for Elasticsearch queries - Geo Hash Grid that allows grouping of coordinates. The Geo Hash Grid has a precision option where 1 is the highest level and 7 is the lowest.
 
-![Elasticsearch Query](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/worldmap-geohash-query.png)
+<img src="src/images/worldmap-geohash-query.png" alt="Design" style="width: 500px;"/>
 
 Three fields need to be provided by the ElasticSearch query:
 
@@ -169,7 +169,7 @@ Three fields need to be provided by the ElasticSearch query:
 - Location Name (optional - geohash value will be shown if not chosen)
 - geo_point field that provides the geohash value.
 
-![Elasticsearch Query](https://raw.githubusercontent.com/grafana/worldmap-panel/master/src/images/es-options.png)
+<img src="src/images/es-options.png" alt="Design" style="width: 500px;"/>
 
 ## Table Data as the Data Source
 
