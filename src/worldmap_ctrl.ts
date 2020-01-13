@@ -53,6 +53,8 @@ const panelDefaults = {
   ignoreInvalidGeohashValues: false,
   stickyLabels: false,
   clickthroughUrl: '',
+  tileserverUrlDark: '',
+  tileserverUrlLight: '',
   clickthroughOptions: {
     windowName: null,
   },

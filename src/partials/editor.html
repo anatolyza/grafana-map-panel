@@ -2,24 +2,12 @@
 <span>
 
   The
-  <a href="https://github.com/panodata/grafana-map-panel" class="editor-link-color" target="_blank">
+  <a href="http://gitlab/devops_simulators/grafana-map-panel-ng" class="editor-link-color" target="_blank">
     Grafana Map Panel NG
   </a>
-  (<a href="https://github.com/panodata/grafana-map-panel/blob/develop/CHANGELOG.md" class="editor-link-color" target="_blank">changes</a>)
-  is work in progress.
-
-  Enjoy
-  <a href="https://community.hiveeyes.org/t/grafana-worldmap-panel-ng/1824" class="editor-link-color" target="_blank">following the development</a>
-  and testing it.
-
-  We will be happy to receive feedback from the community at
-  <a href="https://community.grafana.com/t/giving-the-grafana-worldmap-panel-some-love/17210" class="editor-link-color" target="_blank">[1]</a>,
-  <a href="https://github.com/grafana/worldmap-panel/issues/197" class="editor-link-color" target="_blank">[2]</a>
-  and
-  <a href="https://github.com/panodata/grafana-map-panel" class="editor-link-color" target="_blank">[3]</a>.
-
-  Please don't use this software in production yet.
-
+  is a work in progress. Contact simulators devops team for help , it is a fork of 
+  <a href="https://github.com/panodata/grafana-map-panel" class="editor-link-color" target="_blank"> which is a fork of worldmap by grafana
+  </a>
 </span>
 <hr/>
 
@@ -475,6 +463,24 @@
         <label class="gf-form-label width-10">Clickthrough Window</label>
         <input type="text" class="input-small gf-form-input width-20" ng-model="ctrl.panel.clickthroughOptions.windowName" placeholder="_blank"
                ng-change="ctrl.render()" ng-model-onblur />
+      </div>
+    </div>
+
+    <div class="gf-form-group">
+      <h5>Map links</h5>
+      <div class="gf-form">
+        <label class="gf-form-label width-12">
+          TileServer URL Light
+          <i class="grafana-tip fa fa-question-circle" bs-tooltip="'TileServer URL in form  https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png '"></i>
+        </label>
+        <input type="text" class="input-small gf-form-input width-20" ng-model="ctrl.panel.tileserverUrlLight" ng-change="ctrl.refresh()" ng-model-onblur/>
+      </div>
+      <div class="gf-form">
+        <label class="gf-form-label width-12">
+          TileServer URL Dark
+          <i class="grafana-tip fa fa-question-circle" bs-tooltip="'TileServer URL in form  https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png '"></i>
+        </label>
+        <input type="text" class="input-small gf-form-input width-20" ng-model="ctrl.panel.tileserverUrlDark" ng-change="ctrl.refresh()" ng-moDel-onblur/>
       </div>
     </div>
 

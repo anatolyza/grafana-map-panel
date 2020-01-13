@@ -33,6 +33,12 @@ export default class WorldMap {
   }
 
   createMap() {
+    if (this.ctrl.settings.tileserverUrlLight) {
+      tileServers['CartoDB Positron'].url = this.ctrl.settings.interpolateVariable('tileserverUrlLight');
+    }
+    if (this.ctrl.settings.tileserverUrlDark) {
+      tileServers['CartoDB Dark'].url = this.ctrl.settings.interpolateVariable('tileserverUrlDark');
+    }
     const center = this.ctrl.settings.center;
     const mapCenter = (window as any).L.latLng(center.mapCenterLatitude, center.mapCenterLongitude);
 

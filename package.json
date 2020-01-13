@@ -21,10 +21,12 @@
     "@grafana/toolkit": "next",
     "@types/grafana": "https://git@github.com/CorpGlory/types-grafana.git",
     "@types/lodash": "^4.14.118",
-    "@types/moment": "^2.13.0"
+    "@types/moment": "^2.13.0",
+    "@stereobooster/leaflet-freedraw": "2.12.0"
   },
   "dependencies": {
     "jquery": "^3.2.1",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "leaflet-freedraw": "2.12.0"
   }
 }

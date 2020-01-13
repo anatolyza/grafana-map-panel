@@ -1,3 +1,5 @@
+@import 'leaflet-geoman.css';
+
 .mapcontainer {
   overflow: hidden;
 }
