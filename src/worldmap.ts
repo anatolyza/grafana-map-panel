@@ -2,6 +2,8 @@ import * as _ from 'lodash';
 import $ from 'jquery';
 import * as L from './libs/leaflet';
 import WorldmapCtrl from './worldmap_ctrl';
+import FreeDraw from 'leaflet-freedraw';
+//import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 
 const tileServers = {
   'CartoDB Positron': {
@@ -41,6 +43,7 @@ export default class WorldMap {
     }
     const center = this.ctrl.settings.center;
     const mapCenter = (window as any).L.latLng(center.mapCenterLatitude, center.mapCenterLongitude);
+    const freeDraw = new FreeDraw({ mode: FreeDraw.ALL });
 
     const zoomLevel = this.getEffectiveZoomLevel(center.mapZoomLevel);
 
@@ -62,6 +65,13 @@ export default class WorldMap {
       detectRetina: true,
       attribution: selectedTileServer.attribution,
     }).addTo(this.map);
+
+    freeDraw.addTo(this.map);
+    freeDraw.on('markers', event => {
+      console.log(event.latLngs);
+      this.map.invalidateSize();
+      this.renderMapFirst();
+    });
   }
 
   renderMapFirst() {
