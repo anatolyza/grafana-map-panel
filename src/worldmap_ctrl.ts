@@ -11,6 +11,7 @@ import { WorldmapChrome } from './chrome';
 import { ErrorManager } from './errors';
 import DataFormatter from './data_formatter';
 import appEvents from 'grafana/app/core/app_events';
+//import { ColorPickerCtrl, colorPicker } from 'grafana/app/core/components/colorpicker';
 
 const panelDefaults = {
   maxDataPoints: 1,

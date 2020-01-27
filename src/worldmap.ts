@@ -2,8 +2,9 @@ import * as _ from 'lodash';
 import $ from 'jquery';
 import * as L from './libs/leaflet';
 import WorldmapCtrl from './worldmap_ctrl';
-import FreeDraw from 'leaflet-freedraw';
-//import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import '@geoman-io/leaflet-geoman-free';
+import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
+import 'leaflet-easybutton';
 
 const tileServers = {
   'CartoDB Positron': {
@@ -43,7 +44,6 @@ export default class WorldMap {
     }
     const center = this.ctrl.settings.center;
     const mapCenter = (window as any).L.latLng(center.mapCenterLatitude, center.mapCenterLongitude);
-    const freeDraw = new FreeDraw({ mode: FreeDraw.ALL });
 
     const zoomLevel = this.getEffectiveZoomLevel(center.mapZoomLevel);
 
@@ -66,12 +66,56 @@ export default class WorldMap {
       attribution: selectedTileServer.attribution,
     }).addTo(this.map);
 
-    freeDraw.addTo(this.map);
-    freeDraw.on('markers', event => {
-      console.log(event.latLngs);
-      this.map.invalidateSize();
-      this.renderMapFirst();
+    L.PM.initialize({ optIn: false });
+    L.marker([51.50915, -0.096112], { pmIgnore: true }).addTo(this.map);
+    this.map.pm.addControls({
+      position: 'topleft',
+      drawMarker: false,
+      editMode: false,
+      dragMode: false,
+      cutPolygon: false,
+      drawCircleMarker: false,
     });
+
+    L.easyButton('<p1 style="background-color:DodgerBlue;">.  .</p1>', function(btn, map) {
+      map.pm.setPathOptions({
+        color: 'DodgerBlue',
+        fillColor: 'DodgerBlue',
+        fillOpacity: 0.15,
+        weight: 1.5,
+      });
+    }).addTo(this.map);
+
+    L.easyButton('<p1 style="background-color:Crimson;">.  .</p1>', function(btn, map) {
+      map.pm.setPathOptions({
+        color: 'Crimson',
+        fillColor: 'Crimson',
+        fillOpacity: 0.15,
+        weight: 1.5,
+      });
+    }).addTo(this.map);
+
+    L.easyButton('<p1 style="background-color:LimeGreen;">.  .</p1>', function(btn, map) {
+      map.pm.setPathOptions({
+        color: 'LimeGreen',
+        fillColor: 'LimeGreen',
+        fillOpacity: 0.15,
+        weight: 1.5,
+      });
+    }).addTo(this.map);
+
+    L.easyButton('<p1 style="background-color:DimGray;">.  .</p1>', function(btn, map) {
+      map.pm.setPathOptions({
+        color: 'DimGray',
+        fillColor: 'DimGray',
+        fillOpacity: 0.15,
+        weight: 1.5,
+      });
+    }).addTo(this.map);
+
+    // L.easyButton('fa-trash', function(btn, map) {
+    //   map.pm.layer.remove();
+    // }).addTo(this.map);
   }
 
   renderMapFirst() {
