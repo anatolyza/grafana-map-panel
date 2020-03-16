@@ -77,41 +77,74 @@ export default class WorldMap {
       drawCircleMarker: false,
     });
 
-    L.easyButton('<p1 style="background-color:DodgerBlue;">.  .</p1>', function(btn, map) {
-      map.pm.setPathOptions({
-        color: 'DodgerBlue',
-        fillColor: 'DodgerBlue',
-        fillOpacity: 0.15,
-        weight: 1.5,
-      });
-    }).addTo(this.map);
+    L.easyButton(
+      '<div style="background-color: DodgerBlue;height: 6px;width: 0px;margin: -1px;box-shadow: 0 0 1px 11px dodgerblue;margin-left: 2px;"></div>',
+      function(btn, map) {
+        map.pm.setPathOptions({ color: 'DodgerBlue', fillColor: 'DodgerBlue', fillOpacity: 0.15, weight: 1.5 });
+      }
+    ).addTo(this.map);
 
-    L.easyButton('<p1 style="background-color:Crimson;">.  .</p1>', function(btn, map) {
-      map.pm.setPathOptions({
-        color: 'Crimson',
-        fillColor: 'Crimson',
-        fillOpacity: 0.15,
-        weight: 1.5,
-      });
-    }).addTo(this.map);
+    L.easyButton(
+      '<div style="background-color: Crimson;height: 6px;width: 0px;margin: -1px;box-shadow: 0 0 1px 11px Crimson;margin-left: 2px;"></div>',
+      function(btn, map) {
+        map.pm.setPathOptions({
+          color: 'Crimson',
+          fillColor: 'Crimson',
+          fillOpacity: 0.15,
+          weight: 1.5,
+        });
+      }
+    ).addTo(this.map);
 
-    L.easyButton('<p1 style="background-color:LimeGreen;">.  .</p1>', function(btn, map) {
-      map.pm.setPathOptions({
-        color: 'LimeGreen',
-        fillColor: 'LimeGreen',
-        fillOpacity: 0.15,
-        weight: 1.5,
-      });
-    }).addTo(this.map);
+    L.easyButton(
+      '<div style="background-color: LimeGreen;height: 6px;width: 0px;margin: -1px;box-shadow: 0 0 1px 11px LimeGreen;margin-left: 2px;"></div>',
+      function(btn, map) {
+        map.pm.setPathOptions({
+          color: 'LimeGreen',
+          fillColor: 'LimeGreen',
+          fillOpacity: 0.15,
+          weight: 1.5,
+        });
+      }
+    ).addTo(this.map);
 
-    L.easyButton('<p1 style="background-color:DimGray;">.  .</p1>', function(btn, map) {
-      map.pm.setPathOptions({
-        color: 'DimGray',
-        fillColor: 'DimGray',
-        fillOpacity: 0.15,
-        weight: 1.5,
-      });
-    }).addTo(this.map);
+    L.easyButton(
+      '<div style="background-color: DimGray;height: 6px;width: 0px;margin: -1px;box-shadow: 0 0 1px 11px DimGray;margin-left: 2px;"></div>',
+      function(btn, map) {
+        map.pm.setPathOptions({
+          color: 'DimGray',
+          fillColor: 'DimGray',
+          fillOpacity: 0.15,
+          weight: 1.5,
+        });
+      }
+    ).addTo(this.map);
+
+    // var newbutton = L.easyButton('<p1 style="background-color:Black;">.  .</p1>', function(btn, map) {
+    //   map.pm.setPathOptions({
+    //     color: 'Black',
+    //     fillColor: 'Black',
+    //     fillOpacity: 0.15,
+    //     weight: 1.5,
+    //   });
+    // });
+
+    // this.map.addControls(newbutton);
+
+    // L.easyButton({
+    //     id: 'id-for-the-button',  // an id for the generated button
+    //     position: 'topleft',      // inherited from L.Control -- the corner it goes in
+    //     type: 'replace',          // set to animate when you're comfy with css
+    //     leafletClasses: true,     // use leaflet classes to style the button?
+    //     states:[{                 // specify different icons and responses for your button
+    //       stateName: 'get-center',
+    //       onClick: function(button, map){
+    //         alert('Map is centered at: ' + map.getCenter().toString());
+    //       },
+    //       title: 'show me the middle',
+    //       icon: 'fa-crosshairs'
+    //     }]
+    //   });
 
     // L.easyButton('fa-trash', function(btn, map) {
     //   map.pm.layer.remove();
