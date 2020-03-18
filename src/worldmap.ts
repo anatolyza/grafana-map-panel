@@ -5,6 +5,7 @@ import WorldmapCtrl from './worldmap_ctrl';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import 'leaflet-easybutton';
+import 'images/layers.png';
 
 const tileServers = {
   'CartoDB Positron': {
@@ -19,6 +20,21 @@ const tileServers = {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> ' + '&copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
     subdomains: 'abcd',
   },
+};
+
+const tileServers2 = {
+  First: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a>First</a>',
+    maxZoom: 17,
+  }),
+  Second: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a>Second</a>',
+    maxZoom: 17,
+  }),
+  Third: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a>Third</a>',
+    maxZoom: 17,
+  }),
 };
 
 export default class WorldMap {
@@ -41,6 +57,15 @@ export default class WorldMap {
     }
     if (this.ctrl.settings.tileserverUrlDark) {
       tileServers['CartoDB Dark'].url = this.ctrl.settings.interpolateVariable('tileserverUrlDark');
+    }
+    if (this.ctrl.settings.tileserverUrlFirst) {
+      tileServers2.First._url = this.ctrl.settings.interpolateVariable('tileserverUrlFirst');
+    }
+    if (this.ctrl.settings.tileserverUrlSecond) {
+      tileServers2.Second._url = this.ctrl.settings.interpolateVariable('tileserverUrlSecond');
+    }
+    if (this.ctrl.settings.tileserverUrlThird) {
+      tileServers2.Third._url = this.ctrl.settings.interpolateVariable('tileserverUrlThird');
     }
     const center = this.ctrl.settings.center;
     const mapCenter = (window as any).L.latLng(center.mapCenterLatitude, center.mapCenterLongitude);
@@ -120,6 +145,7 @@ export default class WorldMap {
       }
     ).addTo(this.map);
 
+    L.control.layers(tileServers2).addTo(this.map);
     // var newbutton = L.easyButton('<p1 style="background-color:Black;">.  .</p1>', function(btn, map) {
     //   map.pm.setPathOptions({
     //     color: 'Black',

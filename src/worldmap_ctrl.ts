@@ -55,6 +55,9 @@ const panelDefaults = {
   clickthroughUrl: '',
   tileserverUrlDark: '',
   tileserverUrlLight: '',
+  tileserverUrlFirst: '',
+  tileserverUrlSecond: '',
+  tileserverUrlThird: '',
   clickthroughOptions: {
     windowName: null,
   },
