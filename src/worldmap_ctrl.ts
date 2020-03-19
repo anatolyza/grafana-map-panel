@@ -272,6 +272,13 @@ export default class WorldmapCtrl extends MetricsPanelCtrl {
      * decode appropriately and render the map.
      */
     console.info('Data received:', dataList);
+    if (dataList.length == 2) {
+      dataList[0].rows = dataList[0].rows.concat(dataList[1].rows);
+    }
+    // const test;
+    // _.union(dataList[0],dataList[1])
+    // test = Object.assign({}, dataList[0], dataList[1]);
+    dataList.length;
 
     // Is this the right place to indicate the plugin has been initialized?
     this.initializing = false;

@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:3000/d/cZ4Go-sWk/sources-dir?orgId=1",
+            "url": "http://localhost:3000/d/yWXoBQXWk/report_103?orgId=1",
             "webRoot": "${workspaceFolder}", 
             "sourceMaps":true, 
             "pathMapping": { "/public/plugins/grafana-map-panel": "{workspaceFolder}/dist/" },
