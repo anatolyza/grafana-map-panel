@@ -16213,32 +16213,7 @@ function () {
         weight: 1.5
       });
     }).addTo(this.map);
-    _libs_leaflet__WEBPACK_IMPORTED_MODULE_2__["control"].layers(tileServers2).addTo(this.map); // var newbutton = L.easyButton('<p1 style="background-color:Black;">.  .</p1>', function(btn, map) {
-    //   map.pm.setPathOptions({
-    //     color: 'Black',
-    //     fillColor: 'Black',
-    //     fillOpacity: 0.15,
-    //     weight: 1.5,
-    //   });
-    // });
-    // this.map.addControls(newbutton);
-    // L.easyButton({
-    //     id: 'id-for-the-button',  // an id for the generated button
-    //     position: 'topleft',      // inherited from L.Control -- the corner it goes in
-    //     type: 'replace',          // set to animate when you're comfy with css
-    //     leafletClasses: true,     // use leaflet classes to style the button?
-    //     states:[{                 // specify different icons and responses for your button
-    //       stateName: 'get-center',
-    //       onClick: function(button, map){
-    //         alert('Map is centered at: ' + map.getCenter().toString());
-    //       },
-    //       title: 'show me the middle',
-    //       icon: 'fa-crosshairs'
-    //     }]
-    //   });
-    // L.easyButton('fa-trash', function(btn, map) {
-    //   map.pm.layer.remove();
-    // }).addTo(this.map);
+    _libs_leaflet__WEBPACK_IMPORTED_MODULE_2__["control"].layers(tileServers2).addTo(this.map);
   };
 
   WorldMap.prototype.renderMapFirst = function () {
@@ -17005,12 +16980,8 @@ function (_super) {
 
     if (dataList.length == 2) {
       dataList[0].rows = dataList[0].rows.concat(dataList[1].rows);
-    } // const test;
-    // _.union(dataList[0],dataList[1])
-    // test = Object.assign({}, dataList[0], dataList[1]);
+    } // Is this the right place to indicate the plugin has been initialized?
 
-
-    dataList.length; // Is this the right place to indicate the plugin has been initialized?
 
     this.initializing = false;
 
