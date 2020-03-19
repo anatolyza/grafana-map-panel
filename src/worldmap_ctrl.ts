@@ -273,7 +273,7 @@ export default class WorldmapCtrl extends MetricsPanelCtrl {
      */
     console.info('Data received:', dataList);
 
-    if (dataList.length == 2) {
+    if (dataList.length === 2) {
       dataList[0].rows = dataList[0].rows.concat(dataList[1].rows);
     }
 
