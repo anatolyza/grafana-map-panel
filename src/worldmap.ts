@@ -5,7 +5,7 @@ import WorldmapCtrl from './worldmap_ctrl';
 import '@geoman-io/leaflet-geoman-free';
 import '@geoman-io/leaflet-geoman-free/dist/leaflet-geoman.css';
 import 'leaflet-easybutton';
-import 'images/layers.png';
+//import jsonQuery from 'json-query';
 
 const tileServers = {
   'CartoDB Positron': {
@@ -92,7 +92,7 @@ export default class WorldMap {
     }).addTo(this.map);
 
     L.PM.initialize({ optIn: false });
-    L.marker([51.50915, -0.096112], { pmIgnore: true }).addTo(this.map);
+
     this.map.pm.addControls({
       position: 'topleft',
       drawMarker: false,
@@ -266,6 +266,24 @@ export default class WorldMap {
       console.info('Updating circles');
       this.updateCircles(data);
     }
+    //Anatoly test
+    L.marker([32.8511, 35.4629], { icon: this.iconBuilder('NAMER') }).addTo(this.map);
+    L.marker([32.8515, 35.4633], { icon: this.iconBuilder('ACHZARIT') }).addTo(this.map);
+  }
+
+  iconBuilder(jsonIcon) {
+    const iconTypes = require('./icon_types.json');
+
+    const picked = iconTypes.Entities.find(o => o.type === jsonIcon);
+    console.log(picked);
+    const MapIcon = L.icon({
+      iconUrl: picked.iconUrl,
+      iconSize: [38, 95], // size of the icon
+      iconAnchor: [19, 51], // point of the icon which will correspond to marker's location
+      popupAnchor: [-2, -16], // point from which the popup should open relative to the iconAnchor
+    });
+
+    return MapIcon;
   }
 
   createCircles(data) {
@@ -320,20 +338,30 @@ export default class WorldMap {
   }
 
   createCircle(dataPoint) {
-    const circle = (window as any).L.circleMarker([dataPoint.locationLatitude, dataPoint.locationLongitude], {
-      radius: this.calcCircleSize(dataPoint.value || 0),
-      color: this.getColor(dataPoint.value),
-      fillColor: this.getColor(dataPoint.value),
-      fillOpacity: 0.5,
-      location: dataPoint.key,
-      stroke: Boolean(this.ctrl.settings.circleOptions.strokeEnabled),
-      weight: parseInt(this.ctrl.settings.circleOptions.strokeWeight, 10) || 3,
-    });
+    // const circle = (window as any).L.circleMarker([dataPoint.locationLatitude, dataPoint.locationLongitude], {
+    //   radius: this.calcCircleSize(dataPoint.value || 0),
+    //   color: this.getColor(dataPoint.value),
+    //   fillColor: this.getColor(dataPoint.value),
+    //   fillOpacity: 0.5,
+    //   location: dataPoint.key,
+    //   stroke: Boolean(this.ctrl.settings.circleOptions.strokeEnabled),
+    //   weight: parseInt(this.ctrl.settings.circleOptions.strokeWeight, 10) || 3,
+    // });
 
-    this.createClickthrough(circle, dataPoint);
+    let specialIcon = '';
+
+    if (dataPoint.value === '1') {
+      specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('NAMER') });
+    }
+    if (dataPoint.value === '4') {
+      specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('ACHZARIT') });
+    }
+
+    this.createClickthrough(specialIcon, dataPoint);
     const content = this.getPopupContent(dataPoint.locationName, dataPoint.valueRounded);
-    this.createPopup(circle, content);
-    return circle;
+    this.createPopup(specialIcon, content);
+
+    return specialIcon;
   }
 
   updateCircle(dataPoint) {

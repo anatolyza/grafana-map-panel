@@ -22,13 +22,16 @@
     "@types/grafana": "https://git@github.com/CorpGlory/types-grafana.git",
     "@types/lodash": "^4.14.118",
     "@types/moment": "^2.13.0",
+    "@types/node": "12.12.2",
     "@geoman-io/leaflet-geoman-free": "2.3.0",
-    "leaflet-easybutton": "2.4.0"
+    "leaflet-easybutton": "2.4.0",
+    "json-query": "2.2.2"
   },
   "dependencies": {
-    "jquery": "^3.2.1",
-    "lodash": "^4.17.11",
     "@geoman-io/leaflet-geoman-free": "2.3.0",
-    "leaflet-easybutton": "2.4.0"
+    "jquery": "^3.2.1",
+    "leaflet-easybutton": "2.4.0",
+    "lodash": "^4.17.11",
+    "json-query": "2.2.2"
   }
 }
