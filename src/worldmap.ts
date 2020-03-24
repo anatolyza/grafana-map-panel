@@ -37,6 +37,8 @@ const tileServers2 = {
   }),
 };
 
+const iconTypes = require('./icon_types.json');
+
 export default class WorldMap {
   ctrl: WorldmapCtrl;
   mapContainer: any;
@@ -267,21 +269,34 @@ export default class WorldMap {
       this.updateCircles(data);
     }
     //Anatoly test
-    L.marker([32.8511, 35.4629], { icon: this.iconBuilder('NAMER') }).addTo(this.map);
-    L.marker([32.8515, 35.4633], { icon: this.iconBuilder('ACHZARIT') }).addTo(this.map);
+    // L.marker([32.8511, 35.4629], { icon: this.iconBuilder('NAMER') }).addTo(this.map);
+    // L.marker([32.8515, 35.4633], { icon: this.iconBuilder('ACHZARIT') }).addTo(this.map);
+    // L.marker([32.8517, 35.4636], { icon: this.iconBuilder('Anatoly') }).addTo(this.map);
   }
 
   iconBuilder(jsonIcon) {
-    const iconTypes = require('./icon_types.json');
+    let MapIcon = '';
 
     const picked = iconTypes.Entities.find(o => o.type === jsonIcon);
-    console.log(picked);
-    const MapIcon = L.icon({
-      iconUrl: picked.iconUrl,
-      iconSize: [38, 95], // size of the icon
-      iconAnchor: [19, 51], // point of the icon which will correspond to marker's location
-      popupAnchor: [-2, -16], // point from which the popup should open relative to the iconAnchor
-    });
+    //console.log(picked);
+
+    if (picked == null) {
+      //Fallback Error Icon displayed if image not found in json
+      MapIcon = L.icon({
+        iconUrl:
+          'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ3JlYXRlZCB3aXRoIElua3NjYXBlIChodHRwOi8vd3d3Lmlua3NjYXBlLm9yZy8pIC0tPgo8c3ZnCiAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgeG1sbnM6Y2M9Imh0dHA6Ly93ZWIucmVzb3VyY2Uub3JnL2NjLyIKICAgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIgogICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnNvZGlwb2RpPSJodHRwOi8vc29kaXBvZGkuc291cmNlZm9yZ2UubmV0L0RURC9zb2RpcG9kaS0wLmR0ZCIKICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiCiAgIHdpZHRoPSI0NzYuNjEyMTUiCiAgIGhlaWdodD0iNTIwLjYwNzEyIgogICBpZD0ic3ZnNjMxMiIKICAgc29kaXBvZGk6dmVyc2lvbj0iMC4zMiIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMC40NSIKICAgc29kaXBvZGk6bW9kaWZpZWQ9InRydWUiCiAgIHZlcnNpb249IjEuMCI+CiAgPGRlZnMKICAgICBpZD0iZGVmczYzMTQiIC8+CiAgPHNvZGlwb2RpOm5hbWVkdmlldwogICAgIGlkPSJiYXNlIgogICAgIHBhZ2Vjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIKICAgICBib3JkZXJvcGFjaXR5PSIxLjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAuMCIKICAgICBpbmtzY2FwZTpwYWdlc2hhZG93PSIyIgogICAgIGlua3NjYXBlOnpvb209IjAuMzUiCiAgICAgaW5rc2NhcGU6Y3g9IjM1MCIKICAgICBpbmtzY2FwZTpjeT0iNTIwIgogICAgIGlua3NjYXBlOmRvY3VtZW50LXVuaXRzPSJweCIKICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJsYXllcjEiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSI4NzYiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iNjIyIgogICAgIGlua3NjYXBlOndpbmRvdy14PSI1IgogICAgIGlua3NjYXBlOndpbmRvdy15PSI3MyIgLz4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE2MzE3Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZwogICAgIGlua3NjYXBlOmxhYmVsPSJDYXBhIDEiCiAgICAgaW5rc2NhcGU6Z3JvdXBtb2RlPSJsYXllciIKICAgICBpZD0ibGF5ZXIxIgogICAgIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xMDcuNDA3OCwtMTcyLjA1OTExKSI+CiAgICA8ZwogICAgICAgaWQ9Imc3NTc5IgogICAgICAgdHJhbnNmb3JtPSJtYXRyaXgoMjkuMzI5OTc5LDAsMCwyOS4zMjk5NzksLTEyNDQ3LjY3MSwtMTU3MzIuMTIyKSI+CiAgICAgIDxwb2x5Z29uCiAgICAgICAgIHN0eWxlPSJmaWxsOiNlZDFjMjQiCiAgICAgICAgIGlkPSJwb2x5Z29uNzU4MSIKICAgICAgICAgcG9pbnRzPSI0MzguMTYxLDU1Ny4zNjQgNDM1LjE2Nyw1NTQuNjc2IDQzMS4yNTYsNTU1LjYxOCA0MzIuODg4LDU1MS45NDEgNDI4LjA2Myw1NDcgNDM0Ljc4Niw1NDguOTI2IDQzOC4wNjMsNTQyLjI1IDQzOC4yMzgsNTQ5LjgwMSA0NDQuMzEzLDU1MS4yNSA0MzguNDc1LDU1My4zNTQgNDM4LjE2MSw1NTcuMzY0ICIgLz4KICAgICAgPHBvbHlnb24KICAgICAgICAgc3R5bGU9ImZpbGw6I2VkMWMyNCIKICAgICAgICAgaWQ9InBvbHlnb243NTgzIgogICAgICAgICBwb2ludHM9IjQ0My4zMTMsNTU2LjUgNDM2LjcyNyw1NTQuMTM1IDQzMy41NjMsNTYwIDQzMy45MDgsNTUzLjE1MyA0MzAuODk5LDU1MS41ODQgNDMzLjg3NSw1NTAuMDk4IDQzNC4zMTksNTQ2LjY5IDQzNi42NzUsNTQ5LjE5MyA0MzkuOTU4LDU0OC42NTUgNDM4LjQzOCw1NTEuNjg4IDQ0My4zMTMsNTU2LjUgIiAvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+Cg==',
+        iconSize: [38, 95], // size of the icon
+        iconAnchor: [19, 51], // point of the icon which will correspond to marker's location
+        popupAnchor: [-2, -16], // point from which the popup should open relative to the iconAnchor
+      });
+    } else {
+      MapIcon = L.icon({
+        iconUrl: picked.iconUrl,
+        iconSize: [38, 95], // size of the icon
+        iconAnchor: [19, 51], // point of the icon which will correspond to marker's location
+        popupAnchor: [-2, -16], // point from which the popup should open relative to the iconAnchor
+      });
+    }
 
     return MapIcon;
   }
@@ -348,14 +363,17 @@ export default class WorldMap {
     //   weight: parseInt(this.ctrl.settings.circleOptions.strokeWeight, 10) || 3,
     // });
 
-    let specialIcon = '';
+    //let specialIcon = '';
+    const specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], {
+      icon: this.iconBuilder(dataPoint.value),
+    });
 
-    if (dataPoint.value === '1') {
-      specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('NAMER') });
-    }
-    if (dataPoint.value === '4') {
-      specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('ACHZARIT') });
-    }
+    // if (dataPoint.value === '1') {
+    //   specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('NAMER') });
+    // }
+    // if (dataPoint.value === '4') {
+    //   specialIcon = (window as any).L.marker([dataPoint.locationLatitude, dataPoint.locationLongitude], { icon: this.iconBuilder('ACHZARIT') });
+    // }
 
     this.createClickthrough(specialIcon, dataPoint);
     const content = this.getPopupContent(dataPoint.locationName, dataPoint.valueRounded);
